@@ -1,0 +1,14 @@
+name: symcrypt
+description: A starting point for Dart libraries or applications.
+version: 0.0.1
+author: Hadrien Lejard <hadrien.lejard@gmail.com>
+#homepage: https://www.example.com
+
+environment:
+  sdk: '>=1.0.0 <2.0.0'
+
+dependencies:
+  cipher: "^0.7.1"
+
+dev_dependencies:
+  test: '>=0.12.0 <0.13.0'
