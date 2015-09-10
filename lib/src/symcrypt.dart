@@ -4,11 +4,23 @@
 library symcrypt.base;
 
 import 'package:cipher/cipher.dart';
+import "package:cipher/impl/server.dart";
+import 'package:crypto/crypto.dart';
 import "dart:typed_data";
 
 class Symcrypt {
 
+  static bool _init = false;
+
+  static init() {
+    if (_init == false) {
+      initCipher();
+      _init = true;
+    }
+  }
+
   static String encrypt(String data, String key) {
+    init();
     if (data == null || data == "") {
       return null;
     }
@@ -24,7 +36,8 @@ class Symcrypt {
     return new String.fromCharCodes(cipherData);
   }
 
-  static String decryptData(String data, String key) {
+  static String decrypt(String data, String key) {
+    init();
     if (data == null || data == "") {
       return null;
     }
@@ -38,6 +51,33 @@ class Symcrypt {
 
     Uint8List cipherData = cipher.process(new Uint8List.fromList(data.codeUnits));
     return new String.fromCharCodes(cipherData);
+  }
+
+
+  static String saltData(String data, [String salt = ""]) {
+    if (data == null || data == "") {
+      return data;
+    }
+    if (salt == null) {
+      salt = "";
+    }
+    String _data = data + salt;
+    var sha256 = new MD5();
+    sha256.add(_data.codeUnits);
+    var digest = sha256.close();
+    var hexString = CryptoUtils.bytesToBase64(digest);
+    return hexString;
+  }
+
+  static String createHash([String str = ""]) {
+    if (str == null) {
+      str = "";
+    }
+    MD5 sha256 = new MD5();
+    sha256.add(str.codeUnits);
+    var digest = sha256.close();
+    var hexString = CryptoUtils.bytesToBase64(digest);
+    return hexString;
   }
 
 }
