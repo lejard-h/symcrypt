@@ -4,7 +4,7 @@
 
 library symcrypt.test;
 
-import 'package:symcrypt/core.dart';
+import 'package:symcrypt/symcrypt.dart';
 import 'package:test/test.dart';
 
 void main() {

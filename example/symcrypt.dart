@@ -3,7 +3,7 @@
 
 library symcrypt.example;
 
-import 'package:symcrypt/core.dart';
+import 'package:symcrypt/symcrypt.dart';
 
 main() {
 
