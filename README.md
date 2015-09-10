@@ -1,20 +1,21 @@
-# untitled
+# SymCrypt
 
-A library for Dart developers. It is awesome.
+Simple Symmetric-key encryption for Dart
 
 ## Usage
 
 A simple usage example:
 
-    import 'package:untitled/untitled.dart';
+    import 'package:symcrypt/core.dart';
 
     main() {
-      var awesome = new Awesome();
+        String key = "awesome";
+        String data = getData();
+
+        String decrypt = Symcrypt.decrypt(data, key);
+        String encrypt = Symcrypt.encrypt(decrypt, key);
+
+        assert(data == encrypt);
     }
 
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
 # symcrypt
