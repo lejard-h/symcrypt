@@ -9,7 +9,7 @@ A simple usage example:
     import 'package:symcrypt/core.dart';
 
     main() {
-        String key = "awesome";
+        String key = Symcrypt.createHash("Key");
         String data = getData();
 
         String decrypt = Symcrypt.decrypt(data, key);
