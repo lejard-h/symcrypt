@@ -20,7 +20,7 @@ initSymCrypt() {
 
 String encrypt(String data, String key) {
     initSymCrypt();
-    if (data == null || data == "") {
+    if (data == null || data.isEmpty) {
       return null;
     }
     Uint8List _key = new Uint8List.fromList(key.codeUnits);
@@ -37,7 +37,7 @@ String encrypt(String data, String key) {
 
 String decrypt(String data, String key) {
     initSymCrypt();
-    if (data == null || data == "") {
+    if (data == null || data.isEmpty) {
       return null;
     }
     Uint8List _key = new Uint8List.fromList(key.codeUnits);
@@ -53,12 +53,9 @@ String decrypt(String data, String key) {
   }
 
 
-String saltData(String data, [String salt = ""]) {
-    if (data == null || data == "") {
+String saltData(String data, String salt) {
+    if (data.isEmpty || salt.isEmpty) {
       return data;
-    }
-    if (salt == null) {
-      salt = "";
     }
     String _data = data + salt;
     var sha256 = new MD5();
@@ -68,12 +65,9 @@ String saltData(String data, [String salt = ""]) {
     return hexString;
   }
 
-String createHash([String str = ""]) {
-    if (str == null) {
-      str = "";
-    }
+String createHash(String str) {
     MD5 sha256 = new MD5();
-    sha256.add(str.codeUnits);
+    sha256.add(str?.codeUnits);
     var digest = sha256.close();
     var hexString = CryptoUtils.bytesToBase64(digest);
     return hexString;
