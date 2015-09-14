@@ -1,6 +1,6 @@
 name: symcrypt
-description: A starting point for Dart libraries or applications.
-version: 0.0.1
+description: Symmetric encryptage with utils functions.
+version: 0.0.2
 author: Hadrien Lejard <hadrien.lejard@gmail.com>
 homepage: https://github.com/lejard-h/symcrypt/
 
