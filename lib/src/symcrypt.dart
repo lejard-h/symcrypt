@@ -8,19 +8,18 @@ import "package:cipher/impl/server.dart";
 import 'package:crypto/crypto.dart';
 import "dart:typed_data";
 
-class Symcrypt {
 
-  static bool _init = false;
+bool _initSymCrypt = false;
 
-  static init() {
-    if (_init == false) {
+initSymCrypt() {
+    if (_initSymCrypt == false) {
       initCipher();
-      _init = true;
+      _initSymCrypt = true;
     }
   }
 
-  static String encrypt(String data, String key) {
-    init();
+String encrypt(String data, String key) {
+    initSymCrypt();
     if (data == null || data == "") {
       return null;
     }
@@ -36,8 +35,8 @@ class Symcrypt {
     return new String.fromCharCodes(cipherData);
   }
 
-  static String decrypt(String data, String key) {
-    init();
+String decrypt(String data, String key) {
+    initSymCrypt();
     if (data == null || data == "") {
       return null;
     }
@@ -54,7 +53,7 @@ class Symcrypt {
   }
 
 
-  static String saltData(String data, [String salt = ""]) {
+String saltData(String data, [String salt = ""]) {
     if (data == null || data == "") {
       return data;
     }
@@ -69,7 +68,7 @@ class Symcrypt {
     return hexString;
   }
 
-  static String createHash([String str = ""]) {
+String createHash([String str = ""]) {
     if (str == null) {
       str = "";
     }
@@ -79,5 +78,3 @@ class Symcrypt {
     var hexString = CryptoUtils.bytesToBase64(digest);
     return hexString;
   }
-
-}

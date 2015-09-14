@@ -4,7 +4,7 @@
 
 library symcrypt.test;
 
-import 'package:symcrypt/symcrypt.dart';
+import 'package:symcrypt/symcrypt.dart' as Symcrypt;
 import 'package:test/test.dart';
 
 void main() {
@@ -18,7 +18,15 @@ void main() {
   encryptData = Symcrypt.encrypt(data, key);
   decryptData = Symcrypt.decrypt(encryptData, key);
 
-  test('encrypt/decrypt', () {
+  test('encrypt/decrypt 1', () {
     expect(decryptData, data);
+  });
+
+  test('encrypt/decrypt 2', () {
+    expect(Symcrypt.decrypt(encryptData, key), data);
+  });
+
+  test('encrypt/decrypt 3', () {
+    expect(encryptData, Symcrypt.encrypt(data, key));
   });
 }
