@@ -6,10 +6,14 @@ Simple Symmetric-key encryption for Dart
 
 A simple usage example:
 
-    import 'package:symcrypt/symcrypt.dart';
+    import 'package:symcrypt/symcrypt.dart' as Symcrypt;
 
     main() {
-        String key = Symcrypt.createHash("Key");
+        String pass = "pass"
+        String salt = "salt"
+        String pass = Symcrypt.saltData(pass, salt);
+    
+        String key = Symcrypt.createHash(pass);
         String data = getData();
 
         String decrypt = Symcrypt.decrypt(data, key);
@@ -17,5 +21,3 @@ A simple usage example:
 
         assert(data == encrypt);
     }
-
-# symcrypt
