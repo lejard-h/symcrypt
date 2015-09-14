@@ -11,6 +11,8 @@ import "dart:typed_data";
 
 bool _initSymCrypt = false;
 
+/// Init internal library
+/// Automatically called by encrypt and decrypt
 initSymCrypt() {
     if (_initSymCrypt == false) {
       initCipher();
@@ -18,6 +20,8 @@ initSymCrypt() {
     }
   }
 
+/// Encrypt String data with a key
+/// Key length must be 128/192/256 bits
 String encrypt(String data, String key) {
     initSymCrypt();
     if (data == null || data.isEmpty) {
@@ -35,6 +39,8 @@ String encrypt(String data, String key) {
     return new String.fromCharCodes(cipherData);
   }
 
+/// Decrypt String data with a key
+/// Key length must be 128/192/256 bits
 String decrypt(String data, String key) {
     initSymCrypt();
     if (data == null || data.isEmpty) {
@@ -52,23 +58,23 @@ String decrypt(String data, String key) {
     return new String.fromCharCodes(cipherData);
   }
 
-
+/// saltData with MD5 encryption
 String saltData(String data, String salt) {
     if (data.isEmpty || salt.isEmpty) {
       return data;
     }
     String _data = data + salt;
-    var sha256 = new MD5();
-    sha256.add(_data.codeUnits);
-    var digest = sha256.close();
+    var md5 = new MD5();
+    md5.add(_data.codeUnits);
+    var digest = md5.close();
     var hexString = CryptoUtils.bytesToBase64(digest);
     return hexString;
   }
 
 String createHash(String str) {
-    MD5 sha256 = new MD5();
-    sha256.add(str?.codeUnits);
-    var digest = sha256.close();
+    MD5 md5 = new MD5();
+    md5.add(str?.codeUnits);
+    var digest = md5.close();
     var hexString = CryptoUtils.bytesToBase64(digest);
     return hexString;
   }
