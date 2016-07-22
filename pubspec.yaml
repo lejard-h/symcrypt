@@ -1,6 +1,6 @@
 name: symcrypt
 description: Symmetric encryptage with utils functions.
-version: 0.0.2
+version: 0.0.3
 author: Hadrien Lejard <hadrien.lejard@gmail.com>
 homepage: https://github.com/lejard-h/symcrypt/
 
@@ -9,7 +9,7 @@ environment:
 
 dependencies:
   cipher: ">=0.7.1"
-  crypto: ">=0.9.0"
+  crypto: ">=2.0.0"
 
 dev_dependencies:
   test: '>=0.12.0 <0.13.0'
